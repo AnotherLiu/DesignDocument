@@ -1,0 +1,198 @@
+// 导入图标文件，目前图标都放在了iconfont网站
+@import "https://at.alicdn.com/t/font_3109228_l0by355wfrm.css";
+
+// 3个颜色变量，对于不同的UI主题，只要修改这3个颜色就可以同步更改整个页面，theme是主题色，content是常规的文字颜色，background是背景色
+$theme: green !default;
+$content: black !default;
+$background: #f0f0f0 !default;
+
+// 一些基本样式的初始化
+* {
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: normal;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    color: $content;
+    margin: 0;
+    padding:0;
+}
+
+.iconfont {
+    font-size: 24px;
+    line-height: 24px;
+}
+
+// 各个标题样式
+h1,
+.h1 {
+    font-size: 36px;
+}
+
+h2,
+.h2 {
+    font-size: 24px;
+}
+
+h3,
+.h3 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+// 更小的说明文字字段
+.description {
+    font-size: 12px;
+}
+
+// 对于可点击有交互的文字，使用主题色并添加点击和悬停变化
+a {
+    text-decoration: underline;
+    color: $theme;
+    cursor: pointer;
+    &:hover {
+        filter: brightness(1.1);
+        
+    }
+    &:active {
+        filter: brightness(0.8);
+    }
+}
+
+// 让文字或图标变成灰色，直接加在对应元素上即可
+.grey {
+    color:rgba($content, 0.4) !important
+}
+
+// 下面这个是按钮标签的默认样式，对于不同样式的按钮，比如大按钮，或者文字按钮，在这个按钮样式的基础上添加样式
+button {
+    background-color: $theme; //这里就用上这个theme的色值了
+    color: white; //对于背景色为theme的突出按钮(也就是这个默认样式),简单一点,按钮文字颜色直接写成white
+    line-height: 24px; //修改行高，这样配合下面的padding数值，按钮高度正好是32px
+    font-weight: 600; //文字加粗一些
+    padding: 4px 12px; //很好理解，按钮的宽度默认是根据它里面的文字自适应的
+    border-radius: 4px; //添加圆角
+    display: flex; //如果是文字加图标的按钮，这一条会有用
+    gap:8px;
+    justify-content: center;
+
+    //   对按钮中的图标进行样式修改,如果按钮中有图标,下面的样式就会生效
+    &::before {
+        font-family: "iconfont" !important;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: normal;
+        margin: 0px -8px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    //   按钮的悬停和点击效果
+    &:hover {
+        filter: brightness(1.1); //鼠标悬停时亮度修改为1.1
+    }
+    &:active {
+        filter: brightness(0.9); //鼠标或手指按下时亮度修改为0.8
+        transform: scale(0.98); //点击时缩放为0.98
+    }
+}
+
+// 次级按钮class,底色修改为灰色
+.secondary {
+    background: rgba($content, 0.2);
+}
+
+// 无底色的文字按钮class,悬停时显示底色
+.clear {
+    background: none;
+    color: $theme;
+    &:hover {
+        filter: none;
+        background: rgba($content, 0.1);
+    }
+}
+
+// 大号按钮，最终按钮的高度是40px
+.big {
+    padding: 8px 16px;
+}
+.extra-big {
+    padding:12px 20px;
+}
+.full {
+    width:100%;
+}
+
+.vertical {
+    flex-direction: column;
+    align-items: center;
+    padding:12px 12px 4px;
+    gap:4px;
+    &::before {
+        font-size: 32px;
+    }
+}
+
+// 如果按钮左边一个图标右边一个文字字段，就加上这个class
+.icon-text {
+    padding: 4px 12px 4px 16px;
+    &:before {
+        margin-right: 4px;
+    }
+}
+
+// badge
+
+.badged {
+    position: relative;
+    &::after {
+        content: attr(badge-text);
+        background: $theme;
+        border-radius: 4px;
+        padding:4px;
+        color:white;
+        font-weight: 700;
+        font-size: 10px;
+        line-height: 12px;
+        position: absolute;
+        right:-8px;
+        top:-4px;
+    }
+}
+
+// --------------------------------布局和容器-------------------------------------------
+
+.group {
+    display: flex;
+    border-radius: 4px;
+    align-items: center;
+    gap:12px;
+    padding:0px;
+}
+
+.bar {
+    display:flex;
+    padding:12px;
+    border-radius:4px;
+    gap:12px;
+    background:rgba($content,0.05);
+    width:100%;
+    align-items:center;
+  }
+
+  .bg-clear {
+      background:none;
+  }
+  
+  .center {
+      justify-content: center;
+  }
+
+  .space-between {
+    justify-content: space-between;
+}
+
+.end {
+    justify-content: flex-end;
+}
